@@ -1,12 +1,12 @@
 import { Options } from '@mikro-orm/mysql';
 import { MySqlDriver } from '@mikro-orm/mysql';
-import { OrderSchema } from './schemas/order/order.schema';
-import { OrderItemSchema } from './schemas/order/order-item.schema';
-import { AddressSchema } from './schemas/order/address.schema';
+import { OrderSchema } from '../../../orders/infra/repositories/schemas/order.schema';
+import { OrderItemSchema } from '../../../orders/infra/repositories/schemas/order-item.schema';
+import { AddressSchema } from '../../../orders/infra/repositories/schemas/address.schema';
 import { Migrator } from '@mikro-orm/migrations';
 import * as dotenv from 'dotenv';
 import { SeedManager } from '@mikro-orm/seeder';
-import { ProductSchema } from './schemas/order/product.schema';
+import { ProductSchema } from '../../../orders/infra/repositories/schemas/product.schema';
 
 dotenv.config();
 

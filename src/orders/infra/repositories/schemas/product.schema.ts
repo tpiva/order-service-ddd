@@ -1,5 +1,5 @@
 import { EntitySchema } from '@mikro-orm/core';
-import { Product } from 'src/domain/entities/order/product.entity';
+import { Product } from 'src/orders/domain/entities/product.entity';
 
 export const ProductSchema = new EntitySchema<Product>({
   class: Product,

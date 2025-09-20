@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { CreateOrderUseCase } from './createOrder.useCase';
-import { IAddressRepository } from 'src/domain/repositories/iorder.repository';
-import { Address } from 'src/domain/entities/order/address.entity';
+import { IAddressRepository } from 'src/orders/domain/repositories/iorder.repository';
+import { Address } from 'src/orders/domain/entities/address.entity';
 
 describe('CreateOrderUseCase', () => {
   let useCase: CreateOrderUseCase;

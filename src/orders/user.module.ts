@@ -1,13 +1,13 @@
 import { Module } from '@nestjs/common';
-import { CreateOrderUseCase } from './usecases/createOrder/createOrder.useCase';
-import { OrderController } from 'src/adapters/controllers/order.controller';
-import { AddressRepository } from 'src/adapters/database/repositories/order/address.repository';
-import { OrderRepository } from 'src/adapters/database/repositories/order/order.repository';
+import { OrderController } from 'src/orders/handlers/controllers/order.controller';
+import { AddressRepository } from 'src/orders/infra/repositories/address.repository';
+import { OrderRepository } from 'src/orders/infra/repositories/order.repository';
 import { MikroOrmModule } from '@mikro-orm/nestjs';
-import { OrderSchema } from 'src/adapters/database/schemas/order/order.schema';
-import { AddressSchema } from 'src/adapters/database/schemas/order/address.schema';
+import { OrderSchema } from 'src/orders/infra/repositories/schemas/order.schema';
+import { AddressSchema } from 'src/orders/infra/repositories/schemas/address.schema';
 import { EntityManager } from '@mikro-orm/core';
-import { ProductRepository } from 'src/adapters/database/repositories/order/product.repository';
+import { ProductRepository } from 'src/orders/infra/repositories/product.repository';
+import { CreateOrderUseCase } from './handlers/usecases/createOrder/createOrder.useCase';
 
 @Module({
   imports: [MikroOrmModule.forFeature([OrderSchema, AddressSchema])],

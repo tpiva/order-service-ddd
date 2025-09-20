@@ -1,7 +1,7 @@
-import { IOrderRepository } from 'src/domain/repositories/iorder.repository';
-import Order from 'src/domain/entities/order/order.entity';
-import { Nullable } from 'src/domain/types/nullable.types';
+import { IOrderRepository } from 'src/orders/domain/repositories/iorder.repository';
+import { Nullable } from 'src/core/application/types/nullable.types';
 import { EntityManager } from '@mikro-orm/core';
+import Order from 'src/orders/domain/entities/order.entity';
 
 export class OrderRepository implements IOrderRepository {
   constructor(private readonly em: EntityManager) {}

@@ -1,6 +1,6 @@
 import { EntityManager } from '@mikro-orm/core';
-import { Address } from 'src/domain/entities/order/address.entity';
-import { IAddressRepository } from 'src/domain/repositories/iorder.repository';
+import { Address } from 'src/orders/domain/entities/address.entity';
+import { IAddressRepository } from 'src/orders/domain/repositories/iorder.repository';
 
 export class AddressRepository implements IAddressRepository {
   constructor(private readonly em: EntityManager) {}

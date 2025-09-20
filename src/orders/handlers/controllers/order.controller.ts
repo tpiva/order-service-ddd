@@ -3,7 +3,7 @@ import {
   CreateOrderParamsDto,
   CreateOrderResponseDto,
 } from './dtos/createOrder.dto';
-import { CreateOrderUseCase } from 'src/application/modules/order/usecases/createOrder/createOrder.useCase';
+import { CreateOrderUseCase } from 'src/orders/handlers/usecases/createOrder/createOrder.useCase';
 
 @Controller('orders')
 export class OrderController {

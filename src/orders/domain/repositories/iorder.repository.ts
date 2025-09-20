@@ -1,8 +1,8 @@
-import { Nullable } from 'src/domain/types/nullable.types';
-import Order from '../entities/order/order.entity';
-import { Address } from '../../domain/entities/order/address.entity';
-import OrderItem from '../entities/order/order-item.entity';
-import { Product } from '../entities/order/product.entity';
+import { Nullable } from 'src/core/application/types/nullable.types';
+import OrderItem from '../entities/order-item.entity';
+import Order from '../entities/order.entity';
+import { Product } from '../entities/product.entity';
+import { Address } from '../entities/address.entity';
 
 export interface IOrderRepository {
   add(order: Order): Promise<Order>;

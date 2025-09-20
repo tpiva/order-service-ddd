@@ -1,15 +1,15 @@
-import { Address } from 'src/domain/entities/order/address.entity';
-import { OrderStatus } from 'src/domain/entities/order/order-status.entity';
-import Order from 'src/domain/entities/order/order.entity';
-import UseCase from 'src/domain/usecases/usecase';
+import UseCase from 'src/core/application/usecase';
 import { Inject, Injectable } from '@nestjs/common';
 import {
   IAddressRepository,
   IOrderRepository,
   IProductRepository,
-} from 'src/domain/repositories/iorder.repository';
-import OrderItem from 'src/domain/entities/order/order-item.entity';
-import { Product } from 'src/domain/entities/order/product.entity';
+} from 'src/orders/domain/repositories/iorder.repository';
+import { Address } from 'src/orders/domain/entities/address.entity';
+import OrderItem from 'src/orders/domain/entities/order-item.entity';
+import { OrderStatus } from 'src/orders/domain/entities/order-status.entity';
+import Order from 'src/orders/domain/entities/order.entity';
+import { Product } from 'src/orders/domain/entities/product.entity';
 
 @Injectable()
 export class CreateOrderUseCase extends UseCase<

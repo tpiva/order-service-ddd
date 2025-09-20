@@ -1,7 +1,7 @@
 import { EntityManager } from '@mikro-orm/core';
-import { IOrderItemRepository } from 'src/domain/repositories/iorder.repository';
-import OrderItem from 'src/domain/entities/order/order-item.entity';
-import Order from 'src/domain/entities/order/order.entity';
+import OrderItem from 'src/orders/domain/entities/order-item.entity';
+import Order from 'src/orders/domain/entities/order.entity';
+import { IOrderItemRepository } from 'src/orders/domain/repositories/iorder.repository';
 
 export class OrderItemsRepository implements IOrderItemRepository {
   constructor(private readonly em: EntityManager) {}
