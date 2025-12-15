@@ -16,17 +16,23 @@ const config: Options = {
   host: process.env.DB_HOST || 'localhost',
   port: +(process.env.DB_PORT || 3306),
   user: process.env.DB_USER || 'root',
-  password: process.env.DB_PASSWORD || '',
+  password: process.env.DB_PASSWORD || 'root',
   entities: [OrderSchema, OrderItemSchema, AddressSchema, ProductSchema],
   debug: process.env.NODE_ENV !== 'production',
   extensions: [Migrator, SeedManager],
   migrations: {
-    path: './dist/migrations',
+    path:
+      process.env.NODE_ENV === 'production'
+        ? './dist/migrations'
+        : './src/migrations',
     pathTs: './src/migrations',
   },
   seeder: {
-    path: './dist/seeders',
-    pathTs: './src/seeders',
+    path:
+      process.env.NODE_ENV === 'production'
+        ? './dist/core/infra/database/seeders'
+        : './src/core/infra/database/seeders',
+    pathTs: './src/core/infra/database/seeders',
   },
 };
 

@@ -6,7 +6,7 @@ type AddressDto = {
 };
 
 type AddressResponseDto = {
-  id: number;
+  id: string;
   street: string;
   city: string;
   state: string;
@@ -38,7 +38,7 @@ export class CreateOrderParamsDto {
 }
 
 export class CreateOrderResponseDto {
-  id: number;
+  id: string;
   customerId: number;
   status: string;
   shippingAddress: AddressResponseDto;

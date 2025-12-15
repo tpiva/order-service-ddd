@@ -1,14 +1,18 @@
 import { EntitySchema } from '@mikro-orm/core';
-import Order from '../../../../domain/entities/order/order.entity';
-import { Address } from '../../../../domain/entities/order/address.entity';
-import { OrderStatus } from '../../../../domain/entities/order/order-status.entity';
-import OrderItem from '../../../../domain/entities/order/order-item.entity';
+import { Address } from 'src/orders/domain/entities/address.entity';
+import OrderItem from 'src/orders/domain/entities/order-item.entity';
+import { OrderStatus } from 'src/orders/domain/entities/order-status.entity';
+import Order from 'src/orders/domain/entities/order.entity';
+import { OrderIdSchemaType } from '../types/order-id.type';
 
 const OrderSchema = new EntitySchema<Order>({
   class: Order,
   tableName: 'orders',
   properties: {
-    id: { type: 'number', primary: true, autoincrement: true },
+    id: {
+      type: new OrderIdSchemaType(),
+      primary: true,
+    },
     customerId: { type: 'number', fieldName: 'customer_id' },
     status: { enum: true, items: () => OrderStatus },
     shippingAddress: {

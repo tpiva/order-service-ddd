@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { OrderController } from './order.controller';
 import { CreateOrderUseCase } from 'src/orders/handlers/usecases/createOrder/createOrder.useCase';
-import { Address } from 'src/domain/entities/order/address.entity';
+import { Address } from 'src/orders/domain/entities/address.entity';
 
 describe('OrderController', () => {
   let controller: OrderController;
@@ -14,12 +14,12 @@ describe('OrderController', () => {
           id: 'order-1',
           customerId: dto.customerId,
           status: 'PENDING',
-          shippingAddress: new Address(
-            dto.address.street,
-            dto.address.city,
-            dto.address.state,
-            dto.address.number,
-          ),
+          shippingAddress: new Address({
+            street: dto.address.street,
+            city: dto.address.city,
+            state: dto.address.state,
+            streetNumber: dto.address.number,
+          }),
           createdAt: new Date(),
         },
       })),

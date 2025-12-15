@@ -10,6 +10,7 @@ import OrderItem from 'src/orders/domain/entities/order-item.entity';
 import { OrderStatus } from 'src/orders/domain/entities/order-status.entity';
 import Order from 'src/orders/domain/entities/order.entity';
 import { Product } from 'src/orders/domain/entities/product.entity';
+import { omit } from 'lodash';
 
 @Injectable()
 export class CreateOrderUseCase extends UseCase<
@@ -30,19 +31,17 @@ export class CreateOrderUseCase extends UseCase<
   async execute(
     input: CreateOrderUseCase.Input,
   ): Promise<CreateOrderUseCase.Output> {
-    const address = new Address(
-      input.address.street,
-      input.address.city,
-      input.address.state,
-      input.address.number,
-    );
+    const address = Address.create({
+      ...omit(input.address, ['number']),
+      streetNumber: input.address.number,
+    });
     // TODO: Move address to pre defined data in database
     const persistedAddress = await this.addressRepository.findOrCreate(address);
-    const order = new Order(
-      input.customerId,
-      OrderStatus.PENDING,
-      persistedAddress,
-    );
+    const order = Order.create({
+      customerId: input.customerId,
+      status: OrderStatus.PENDING,
+      shippingAddress: persistedAddress,
+    });
 
     const products = await this.getProducts(
       input.items.map((item) => item.productId),

@@ -6,7 +6,7 @@ import { Address } from '../entities/address.entity';
 
 export interface IOrderRepository {
   add(order: Order): Promise<Order>;
-  findById(id: number): Promise<Nullable<Order>>;
+  findById(id: string): Promise<Nullable<Order>>;
 }
 
 export interface IAddressRepository {

@@ -7,10 +7,10 @@ export class AddressRepository implements IAddressRepository {
 
   async findOrCreate(address: Address): Promise<Address> {
     const found = await this.em.findOne(Address, {
-      street: address['street'],
-      city: address['city'],
-      state: address['state'],
-      streetNumber: address['streetNumber'],
+      street: address.street,
+      city: address.city,
+      state: address.state,
+      streetNumber: address.streetNumber,
     });
     if (found) return found;
     await this.em.persistAndFlush(address);

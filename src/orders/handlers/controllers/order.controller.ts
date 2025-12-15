@@ -17,15 +17,15 @@ export class OrderController {
 
     const address = result.order.shippingAddress;
     return {
-      id: result.order.id,
+      id: result.order.id.value,
       customerId: result.order.customerId,
       status: result.order.status,
       shippingAddress: {
-        id: address.id,
-        street: address['street'],
-        city: address['city'],
-        state: address['state'],
-        number: address['streetNumber'],
+        id: address.id.value,
+        street: address.street,
+        city: address.city,
+        state: address.state,
+        number: address.streetNumber,
       },
       items: result.order.items.map((item) => ({
         id: item.id,

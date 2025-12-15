@@ -1,32 +1,61 @@
+import Uuid from 'src/core/domain/value-objects/uuid.vo';
 import { Address } from './address.entity';
 import OrderItem from './order-item.entity';
 import { OrderStatus } from './order-status.entity';
+import { AggregateRoot } from 'src/core/domain/aggregate-root';
 
-export default class Order {
-  id: number;
+export class OrderId extends Uuid {}
+
+type CreateOrderCommand = {
   customerId: number;
   status: OrderStatus;
   shippingAddress: Address;
-  createdAt: Date;
+};
+
+type OrderProps = {
+  id?: OrderId;
+  customerId: number;
+  status: OrderStatus;
+  shippingAddress: Address;
+  createdAt?: Date;
+  items?: OrderItem[];
+};
+
+export default class Order extends AggregateRoot {
+  id: OrderId;
+  customerId: number;
+  status: OrderStatus = OrderStatus.PENDING;
+  shippingAddress: Address;
+  createdAt: Date = new Date();
   items: OrderItem[] = [];
 
-  constructor(
-    customerId: number,
-    status: OrderStatus,
-    shippingAddress: Address,
-    createdAt: Date = new Date(),
-  ) {
-    this.customerId = customerId;
-    this.status = status;
-    this.shippingAddress = shippingAddress;
-    this.createdAt = createdAt;
+  constructor(props: OrderProps) {
+    super();
+    this.id =
+      typeof props.id === 'string'
+        ? new OrderId(props.id)
+        : (props.id ?? new OrderId());
+    this.customerId = props.customerId;
+    this.status = props.status;
+    this.shippingAddress = props.shippingAddress;
+    if (props.createdAt) {
+      this.createdAt = props.createdAt;
+    }
+    if (props.items) {
+      this.items = props.items;
+    }
+  }
+
+  static create(command: CreateOrderCommand): Order {
+    const order = new Order(command);
+    return order;
   }
 
   public addItem(item: OrderItem): void {
     this.items.push(item);
   }
 
-  public getAsJson() {
+  toJSON() {
     return {
       id: this.id,
       customerId: this.customerId,

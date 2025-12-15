@@ -1,7 +1,7 @@
 import { EntitySchema } from '@mikro-orm/core';
-import OrderItem from '../../../../domain/entities/order/order-item.entity';
-import { Product } from 'src/domain/entities/order/product.entity';
-import Order from 'src/domain/entities/order/order.entity';
+import OrderItem from 'src/orders/domain/entities/order-item.entity';
+import Order from 'src/orders/domain/entities/order.entity';
+import { Product } from 'src/orders/domain/entities/product.entity';
 
 const OrderItemSchema = new EntitySchema<OrderItem>({
   class: OrderItem,
