@@ -57,12 +57,12 @@ export default class Order extends AggregateRoot {
 
   toJSON() {
     return {
-      id: this.id,
+      id: this.id.value,
       customerId: this.customerId,
       status: this.status,
       shippingAddress: this.shippingAddress.getAsJson(),
       createdAt: this.createdAt,
-      items: this.items.map((item) => item.getAsJson()),
+      items: this.items.map((item) => item.toJSON()),
     };
   }
 }

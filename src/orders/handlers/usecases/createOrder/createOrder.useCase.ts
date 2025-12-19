@@ -49,11 +49,11 @@ export class CreateOrderUseCase extends UseCase<
 
     if (input.items && input.items.length > 0) {
       input.items.forEach((item) => {
-        const orderItem = new OrderItem(
-          products.find((p) => p.id === item.productId),
-          item.quantity,
-          item.price,
-        );
+        const orderItem = OrderItem.create({
+          product: products.find((p) => p.id.value === item.productId),
+          quantity: item.quantity,
+          price: item.price,
+        });
         order.addItem(orderItem);
       });
     }
@@ -62,7 +62,7 @@ export class CreateOrderUseCase extends UseCase<
     return { order: persistedOrder };
   }
 
-  private async getProducts(productIds: number[]): Promise<Product[]> {
+  private async getProducts(productIds: string[]): Promise<Product[]> {
     const promises = productIds.map((productId) => {
       return this.productRepository.findById(productId);
     });
@@ -76,7 +76,7 @@ export namespace CreateOrderUseCase {
   export class Input {
     customerId: number;
     items?: Array<{
-      productId: number;
+      productId: string;
       quantity: number;
       price: number;
     }>;

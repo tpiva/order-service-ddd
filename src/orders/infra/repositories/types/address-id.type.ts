@@ -20,4 +20,3 @@ export class AddressIdSchemaType extends Type<AddressId, string> {
     return `varchar(36)`;
   }
 }
-

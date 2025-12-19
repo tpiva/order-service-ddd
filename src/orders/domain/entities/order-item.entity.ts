@@ -1,33 +1,57 @@
+import { AggregateRoot } from 'src/core/domain/aggregate-root';
 import Order from './order.entity';
-import { Product } from './product.entity';
+import { Product, ProductId } from './product.entity';
+import Uuid from 'src/core/domain/value-objects/uuid.vo';
 
-export default class OrderItem {
+export class OrderItemId extends Uuid {}
+
+type CreateOrderItemCommand = {
+  product: Product;
+  quantity: number;
+  price: number;
+  order?: Order;
+};
+
+type OrderItemProps = {
+  id?: OrderItemId;
+  product: Product;
+  quantity: number;
+  price: number;
+  order?: Order;
+};
+
+export default class OrderItem extends AggregateRoot {
   public order?: Order;
-  public id?: number;
+  public id: OrderItemId;
   public product: Product;
   public quantity: number;
   public price: number;
 
-  constructor(
-    product: Product,
-    quantity: number,
-    price: number,
-    order?: Order,
-  ) {
-    this.product = product;
-    this.quantity = quantity;
-    this.price = price;
-    this.order = order;
+  constructor(props: OrderItemProps) {
+    super();
+    this.id =
+      typeof props.id === 'string'
+        ? new OrderItemId(props.id)
+        : (props.id ?? new OrderItemId());
+    this.product = props.product;
+    this.quantity = props.quantity;
+    this.price = props.price;
+    this.order = props.order;
   }
 
-  public get productId(): number {
+  static create(command: CreateOrderItemCommand): OrderItem {
+    const orderItem = new OrderItem(command);
+    return orderItem;
+  }
+
+  public get productId(): ProductId {
     return this.product.id;
   }
 
-  public getAsJson() {
+  toJSON() {
     return {
-      id: this.id,
-      product: this.product.getAsJson(),
+      id: this.id.value,
+      product: this.product.toJSON(),
       quantity: this.quantity,
       price: this.price,
     };

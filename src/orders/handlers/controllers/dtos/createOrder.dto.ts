@@ -14,20 +14,20 @@ type AddressResponseDto = {
 };
 
 type OrderItemDto = {
-  productId: number;
+  productId: string;
   quantity: number;
   price: number;
 };
 
 type OrderItemResponseDto = {
-  id: number;
+  id: string;
   product: ProductResponseDto;
   quantity: number;
   price: number;
 };
 
 type ProductResponseDto = {
-  id: number;
+  id: string;
   name: string;
 };
 

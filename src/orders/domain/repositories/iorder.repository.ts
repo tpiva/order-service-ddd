@@ -18,5 +18,5 @@ export interface IOrderItemRepository {
 }
 
 export interface IProductRepository {
-  findById(id: number): Promise<Product>;
+  findById(id: string): Promise<Product>;
 }

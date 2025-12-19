@@ -173,13 +173,13 @@
       "columns": {
         "id": {
           "name": "id",
-          "type": "int",
-          "unsigned": true,
-          "autoincrement": true,
-          "primary": true,
+          "type": "varchar(36)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
           "nullable": false,
-          "length": null,
-          "mappedType": "integer"
+          "length": 36,
+          "mappedType": "string"
         },
         "name": {
           "name": "name",
@@ -213,23 +213,23 @@
       "columns": {
         "id": {
           "name": "id",
-          "type": "int",
-          "unsigned": true,
-          "autoincrement": true,
-          "primary": true,
-          "nullable": false,
-          "length": null,
-          "mappedType": "integer"
-        },
-        "product_id": {
-          "name": "product_id",
-          "type": "int",
-          "unsigned": true,
+          "type": "varchar(36)",
+          "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
-          "length": null,
-          "mappedType": "integer"
+          "length": 36,
+          "mappedType": "string"
+        },
+        "product_id": {
+          "name": "product_id",
+          "type": "varchar(36)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 36,
+          "mappedType": "string"
         },
         "quantity": {
           "name": "quantity",
